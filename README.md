@@ -8,7 +8,7 @@ Step 2: npm run commit
 
 step 3: git push -u origin main
 
-### Code Standard and Conventional commits setup guidelines
+# Coding Standard and Conventional commits setup guidelines
 
 ## Dependencies Required for Eslint and Prettier
 
@@ -20,11 +20,35 @@ step 3: git push -u origin main
 
 `` npm install prettier eslint-config-prettier eslint-plugin-prettier --save-dev ``
 
+## Automate the eslint and prettier checking before committing the code
+
+`` npm install husky lint-staged --save-dev ``
+
+```js
+    "husky": {
+  "hooks": {
+    "pre-commit": "lint-staged"
+  }
+}
+```
+
+```js
+    "lint-staged": {
+  "*.{js,jsx,ts,tsx}": [
+    "npm run lint",
+    "npm run format",
+    "git add"
+  ]
+}
+```
+
 ## Dependencies Required for conventional commits
 
 `` npm install commitizen conventional-changelog-cli --save-dev ``
 
 `` npx commitizen init cz-conventional-changelog --save-dev --save-exact ``
+
+
 
 
 
