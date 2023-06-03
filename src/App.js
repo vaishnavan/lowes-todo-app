@@ -1,10 +1,14 @@
-import React, { useContext } from 'react';
-import { todoContext } from './context/TodoProvider';
+/* eslint-disable react/jsx-no-useless-fragment */
+/* eslint-disable no-underscore-dangle */
+import React from 'react';
+import TodoApp from './components/TodoList/TodoList';
 
 function App() {
-  const { todoData } = useContext(todoContext);
-  console.log(todoData);
-  return <h1>vaishnavan</h1>;
+  return (
+    <>
+      <TodoApp />
+    </>
+  );
 }
 
 export default App;

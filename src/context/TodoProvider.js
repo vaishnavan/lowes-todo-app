@@ -6,10 +6,12 @@ export const todoContext = createContext();
 
 function TodoProvider({ children }) {
   const [todoData, setTodoData] = useState();
+  const [itemName, setItemName] = useState('');
 
   useEffect(() => {
     getTodoService()
       .then((res) => {
+        console.log(res.result);
         setTodoData(res.result);
       })
       .catch((err) => {
@@ -18,7 +20,9 @@ function TodoProvider({ children }) {
   }, []);
 
   return (
-    <todoContext.Provider value={{ todoData, setTodoData }}>
+    <todoContext.Provider
+      value={{ todoData, setTodoData, itemName, setItemName }}
+    >
       {children}
     </todoContext.Provider>
   );
