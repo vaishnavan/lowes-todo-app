@@ -17,9 +17,17 @@ import {
 import { todoContext } from '../../context/TodoProvider';
 
 function TodoList({ handleEdit, handleCheckBox, handleRemove }) {
-  const { todoData } = useContext(todoContext);
+  const { todoData, loading } = useContext(todoContext);
   return (
     <List>
+      {loading && (
+        <h2 style={{ textAlign: 'center', color: '#1976d2' }}>Loading...</h2>
+      )}
+      {todoData && !todoData.length && (
+        <h3 style={{ textAlign: 'center', color: '#1976d2' }}>
+          No Item Available
+        </h3>
+      )}
       {todoData &&
         todoData.map((todo) => (
           <ListItem key={todo._id}>

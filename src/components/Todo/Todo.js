@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useContext, useState } from 'react';
 import { Container } from '@mui/material';
+import { toast } from 'react-toastify';
 import { todoContext } from '../../context/TodoProvider';
 import {
   createTodoService,
@@ -36,6 +37,7 @@ function Todo() {
             return data;
           });
           setTodoData(updateData);
+          toast('Updated successfully');
           setItemName('');
           setBtnToggle(false);
         })
@@ -46,6 +48,7 @@ function Todo() {
       createTodoService(obj)
         .then((res) => {
           setTodoData([...todoData, res.result]);
+          toast('Added successfully');
           setItemName('');
         })
         .catch((err) => {
@@ -59,7 +62,7 @@ function Todo() {
     deleteTodoService(id)
       .then(() => {
         setTodoData(filterData);
-        console.log('deleted successfully');
+        toast('Deleted successfully');
       })
       .catch((err) => {
         console.log(err);
@@ -88,6 +91,7 @@ function Todo() {
           return data;
         });
         setTodoData(updateCheck);
+        toast(`${obj.completed ? 'Completed' : 'UnCompleted'} Successfully`);
       })
       .catch((err) => {
         console.log(err);

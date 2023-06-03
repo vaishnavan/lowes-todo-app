@@ -7,11 +7,12 @@ export const todoContext = createContext();
 function TodoProvider({ children }) {
   const [todoData, setTodoData] = useState();
   const [itemName, setItemName] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getTodoService()
       .then((res) => {
-        console.log(res.result);
+        setLoading(false);
         setTodoData(res.result);
       })
       .catch((err) => {
@@ -21,7 +22,7 @@ function TodoProvider({ children }) {
 
   return (
     <todoContext.Provider
-      value={{ todoData, setTodoData, itemName, setItemName }}
+      value={{ todoData, setTodoData, itemName, setItemName, loading }}
     >
       {children}
     </todoContext.Provider>
