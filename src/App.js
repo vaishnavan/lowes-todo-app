@@ -1,18 +1,9 @@
-import React from 'react';
-// import { getTodoService } from './services/todo.services';
-
-// API https://lowes-todo-app.vercel.app/
+import React, { useContext } from 'react';
+import { todoContext } from './context/TodoProvider';
 
 function App() {
-  // useEffect(() => {
-  //   getTodoService()
-  //     .then((res) => {
-  //       console.log(res.result);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // }, []);
+  const { todoData } = useContext(todoContext);
+  console.log(todoData);
   return <h1>vaishnavan</h1>;
 }
 
