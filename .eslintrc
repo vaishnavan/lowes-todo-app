@@ -23,6 +23,8 @@
         "prettier/prettier": "off",
         "import/no-extraneous-dependencies": "off",
         "no-console": "off",
-        "no-undef": "off"
+        "no-undef": "off",
+        "react/jsx-filename-extension": "off",
+        "import/no-import-module-exports": "off"
     }
 }
