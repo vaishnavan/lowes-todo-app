@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cors());
 
-app.use('/v1/api', require('./Routes/todo.routes'));
+app.use('/v1/api', require('./routes/todo.routes'));
 
 app.listen(PORT, async (err) => {
   if (!err) {
