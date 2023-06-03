@@ -1,14 +1,8 @@
-/* eslint-disable react/jsx-no-useless-fragment */
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
-import TodoApp from './components/TodoList/TodoList';
+import Todo from './components/Todo/Todo';
 
 function App() {
-  return (
-    <>
-      <TodoApp />
-    </>
-  );
+  return <Todo />;
 }
 
 export default App;

@@ -27,6 +27,8 @@
         "react/jsx-filename-extension": "off",
         "import/no-import-module-exports": "off",
         "react/require-default-props": "off",
-        "react/jsx-no-constructed-context-values": "off"
+        "react/jsx-no-constructed-context-values": "off",
+        "react/jsx-no-useless-fragment": "off",
+        "no-underscore-dangle": "off"
     }
 }
