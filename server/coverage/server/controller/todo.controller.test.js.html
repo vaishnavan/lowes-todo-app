@@ -278,7 +278,20 @@
 <a name='L213'></a><a href='#L213'>213</a>
 <a name='L214'></a><a href='#L214'>214</a>
 <a name='L215'></a><a href='#L215'>215</a>
-<a name='L216'></a><a href='#L216'>216</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L216'></a><a href='#L216'>216</a>
+<a name='L217'></a><a href='#L217'>217</a>
+<a name='L218'></a><a href='#L218'>218</a>
+<a name='L219'></a><a href='#L219'>219</a>
+<a name='L220'></a><a href='#L220'>220</a>
+<a name='L221'></a><a href='#L221'>221</a>
+<a name='L222'></a><a href='#L222'>222</a>
+<a name='L223'></a><a href='#L223'>223</a>
+<a name='L224'></a><a href='#L224'>224</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -436,6 +449,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -486,14 +501,20 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { createTodo, getAllTodos, updateTodo, deleteTodo } = <span class="cstat-no" title="statement not covered" >require('./todo.controller');</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const {
+  createTodo,
+  getAllTodos,
+  updateTodo,
+  deleteTodo,
+} = <span class="cstat-no" title="statement not covered" >require('./todo.controller');</span>
 const Todo = <span class="cstat-no" title="statement not covered" >require('../model/todo.model');</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >describe('createTodo', <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
@@ -649,7 +670,9 @@ const Todo = <span class="cstat-no" title="statement not covered" >require('../m
   });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  it('should handle errors and return a response with status 500 and error message', <span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    Todo.findByIdAndUpdate = jest.fn().mockRejectedValue(new Error('Failed to update Todo'));</span>
+<span class="cstat-no" title="statement not covered" >    Todo.findByIdAndUpdate = jest</span>
+      .fn()
+      .mockRejectedValue(new Error('Failed to update Todo'));
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    await updateTodo(req, res);</span>
 &nbsp;
@@ -699,7 +722,9 @@ const Todo = <span class="cstat-no" title="statement not covered" >require('../m
   });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  it('should handle errors and return a response with status 500 and error message', <span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    Todo.findByIdAndDelete = jest.fn().mockRejectedValue(new Error('Failed to delete Todo'));</span>
+<span class="cstat-no" title="statement not covered" >    Todo.findByIdAndDelete = jest</span>
+      .fn()
+      .mockRejectedValue(new Error('Failed to delete Todo'));
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    await deleteTodo(req, res);</span>
 &nbsp;
@@ -707,7 +732,6 @@ const Todo = <span class="cstat-no" title="statement not covered" >require('../m
 <span class="cstat-no" title="statement not covered" >    expect(res.json).toHaveBeenCalledWith({ error: 'Failed to delete Todo' });</span>
   });
 });
-&nbsp;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -715,7 +739,7 @@ const Todo = <span class="cstat-no" title="statement not covered" >require('../m
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-03T06:27:09.410Z
+                at 2023-06-03T07:55:06.205Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
