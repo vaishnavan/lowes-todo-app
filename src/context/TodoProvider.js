@@ -10,14 +10,19 @@ function TodoProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getTodoService()
-      .then((res) => {
-        setLoading(false);
-        setTodoData(res.result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const timer = setTimeout(() => {
+      getTodoService()
+        .then((res) => {
+          setLoading(false);
+          setTodoData(res.result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   return (

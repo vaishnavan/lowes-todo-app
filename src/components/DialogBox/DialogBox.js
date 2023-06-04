@@ -37,7 +37,7 @@ function DialogBox({ open, setOpen, selectedTodo, handleRemove }) {
 DialogBox.propTypes = {
   open: PropTypes.bool.isRequired,
   setOpen: PropTypes.func.isRequired,
-  selectedTodo: PropTypes.object.isRequired,
+  selectedTodo: PropTypes.object,
   handleRemove: PropTypes.func.isRequired,
 };
 
