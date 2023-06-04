@@ -16,6 +16,13 @@ API EndPoint :- [https://lowes-todo-app.vercel.app/](https://lowes-todo-app.verc
 ### Screenshot
 ![image description](/public/images/output-screen.png)
 
+### Running App Locally
+Git clone ``https://github.com/vaishnavan/lowes-todo-app.git``
+
+Run ``npm install``
+
+To Run App locally ``npm start`` its will run on ``Localhost:3000``
+
 ### Steps to commit the code
 
 Step 1: git add .
