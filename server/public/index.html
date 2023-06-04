@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Documentation</title>
+  <style>
+    .endpoint-container {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .endpoint-method {
+      font-weight: bold;
+    }
+    .endpoint-path {
+      margin-top: 5px;
+      color: #888;
+    }
+    .endpoint-description {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>API Documentation</h1>
+  <div class="endpoint-container">
+    <div class="endpoint-method">GET</div>
+    <div class="endpoint-path">https://lowes-todo-app.vercel.app/v1/api/get-todo</div>
+    <div class="endpoint-description">
+      <p>This endpoint retrieves data from the server.</p>
+      <p>Parameters: None</p>
+    </div>
+  </div>
+  
+  <div class="endpoint-container">
+    <div class="endpoint-method">POST</div>
+    <div class="endpoint-path">https://lowes-todo-app.vercel.app/v1/api/create-todo</div>
+    <div class="endpoint-description">
+      <p>This endpoint create a item</p>
+      <p>Parameters:</p>
+      <ul>
+        <li><strong>ItemName</strong> (string): Adding ItemName</li>
+        <li><strong>Complete</strong> (string): Marking the status</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="endpoint-container">
+    <div class="endpoint-method">Update</div>
+    <div class="endpoint-path">https://lowes-todo-app.vercel.app/v1/api/update-todo/:id</div>
+    <div class="endpoint-description">
+      <p>This endpoint Update a item</p>
+      <p>Parameters:</p>
+      <ul>
+        <li><strong>_id</strong> (string): unique ID</li>
+        <li><strong>ItemName</strong> (string): Adding ItemName</li>
+        <li><strong>Complete</strong> (string): Marking the status</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="endpoint-container">
+    <div class="endpoint-method">Delete</div>
+    <div class="endpoint-path">https://lowes-todo-app.vercel.app/v1/api/delete-todo/:id</div>
+    <div class="endpoint-description">
+      <p>This endpoint delete a item</p>
+      <p>Parameters:</p>
+      <ul>
+        <li><strong>_id</strong> (string): unique ID</li>
+      </ul>
+    </div>
+  </div>
+  
+</body>
+</html>
