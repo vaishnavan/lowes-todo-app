@@ -52,6 +52,8 @@ function Todo() {
         .catch((err) => {
           console.log(err);
         });
+    } else if (!itemName) {
+      toast('Please Enter Item Name');
     } else {
       createTodoService(obj)
         .then((res) => {
