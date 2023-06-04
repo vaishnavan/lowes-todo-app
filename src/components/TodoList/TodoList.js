@@ -8,6 +8,7 @@ import {
   ListItemText,
   ListItemSecondaryAction,
   IconButton,
+  Typography,
 } from '@mui/material';
 import {
   Delete as DeleteIcon,
@@ -52,12 +53,24 @@ function TodoList({ handleEdit, handleCheckBox }) {
       />
       <List>
         {loading && (
-          <h2 style={{ textAlign: 'center', color: '#1976d2' }}>Loading...</h2>
+          <Typography
+            variant="h4"
+            component="h2"
+            align="center"
+            style={{ textAlign: 'center', color: '#1976d2' }}
+          >
+            Loading...
+          </Typography>
         )}
         {todoData && !todoData.length && (
-          <h3 style={{ textAlign: 'center', color: '#1976d2' }}>
+          <Typography
+            variant="h4"
+            component="h3"
+            align="center"
+            style={{ textAlign: 'center', color: '#1976d2' }}
+          >
             No Item Available
-          </h3>
+          </Typography>
         )}
         {todoData &&
           todoData.map((todo) => (
