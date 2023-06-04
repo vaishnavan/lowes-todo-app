@@ -35,7 +35,7 @@ function Todo() {
     const obj = {
       itemName,
     };
-    if (editId) {
+    if (editId && btnToggle) {
       updateTodoService(obj, editId)
         .then(() => {
           const updateData = todoData.map((data) => {
