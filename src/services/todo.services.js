@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://lowes-todo-app.vercel.app/v1/api';
+import { API_URL } from '../constants/constants';
 
 const createTodoService = async (data) => {
   try {

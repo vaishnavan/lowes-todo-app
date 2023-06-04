@@ -5,12 +5,18 @@ import { toast } from 'react-toastify';
 import { todoContext } from '../../context/TodoProvider';
 import {
   createTodoService,
-  deleteTodoService,
   updateTodoService,
 } from '../../services/todo.services';
 import TodoForm from '../TodoForm/TodoForm';
 import TodoList from '../TodoList/TodoList';
 import Header from '../Header/Header';
+import {
+  ADD_SUCCESS,
+  COMPLETED,
+  UNCOMPLETED,
+  UPDATE_SUCCESS,
+} from '../../constants/constants';
+import { StyledOuterFlow } from './Todo.styled';
 
 function Todo() {
   const { todoData, setTodoData, itemName, setItemName } =
@@ -23,7 +29,9 @@ function Todo() {
   };
 
   const handleAdd = (event) => {
-    event.preventDefault();
+    if (event.cancelable) {
+      event.preventDefault();
+    }
     const obj = {
       itemName,
     };
@@ -37,7 +45,7 @@ function Todo() {
             return data;
           });
           setTodoData(updateData);
-          toast('Updated successfully');
+          toast(UPDATE_SUCCESS);
           setItemName('');
           setBtnToggle(false);
         })
@@ -48,25 +56,13 @@ function Todo() {
       createTodoService(obj)
         .then((res) => {
           setTodoData([...todoData, res.result]);
-          toast('Added successfully');
+          toast(ADD_SUCCESS);
           setItemName('');
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  };
-
-  const handleRemove = (id) => {
-    const filterData = todoData.filter((data) => data._id !== id);
-    deleteTodoService(id)
-      .then(() => {
-        setTodoData(filterData);
-        toast('Deleted successfully');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   const handleEdit = (id) => {
@@ -91,7 +87,7 @@ function Todo() {
           return data;
         });
         setTodoData(updateCheck);
-        toast(`${obj.completed ? 'Completed' : 'UnCompleted'} Successfully`);
+        toast(`${obj.completed ? COMPLETED : UNCOMPLETED}`);
       })
       .catch((err) => {
         console.log(err);
@@ -106,11 +102,9 @@ function Todo() {
         handleAdd={handleAdd}
         btnToggle={btnToggle}
       />
-      <TodoList
-        handleEdit={handleEdit}
-        handleRemove={handleRemove}
-        handleCheckBox={handleCheckBox}
-      />
+      <StyledOuterFlow>
+        <TodoList handleEdit={handleEdit} handleCheckBox={handleCheckBox} />
+      </StyledOuterFlow>
     </Container>
   );
 }

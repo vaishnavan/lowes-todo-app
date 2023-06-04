@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 import {
   List,
   ListItem,
@@ -15,65 +16,99 @@ import {
   CheckBox,
 } from '@mui/icons-material';
 import { todoContext } from '../../context/TodoProvider';
+import { REMOVE_SUCCESS } from '../../constants/constants';
+import { deleteTodoService } from '../../services/todo.services';
+import DialogBox from '../DialogBox/DialogBox';
 
-function TodoList({ handleEdit, handleCheckBox, handleRemove }) {
-  const { todoData, loading } = useContext(todoContext);
+function TodoList({ handleEdit, handleCheckBox }) {
+  const { todoData, loading, setTodoData } = useContext(todoContext);
+  const [open, setOpen] = useState(false);
+  const [selectedTodo, setSelectedTodo] = useState(null);
+
+  const handleDeleteConfirmation = (todo) => {
+    setSelectedTodo(todo);
+    setOpen(true);
+  };
+
+  const handleRemove = (todo) => {
+    const filterData = todoData.filter((data) => data._id !== todo._id);
+    deleteTodoService(todo._id)
+      .then(() => {
+        setTodoData(filterData);
+        toast(REMOVE_SUCCESS);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
-    <List>
-      {loading && (
-        <h2 style={{ textAlign: 'center', color: '#1976d2' }}>Loading...</h2>
-      )}
-      {todoData && !todoData.length && (
-        <h3 style={{ textAlign: 'center', color: '#1976d2' }}>
-          No Item Available
-        </h3>
-      )}
-      {todoData &&
-        todoData.map((todo) => (
-          <ListItem key={todo._id}>
-            <IconButton
-              edge="end"
-              aria-label="check"
-              style={{ margin: '0 2px' }}
-              onClick={() => handleCheckBox(todo._id)}
-            >
-              {todo.completed ? <CheckBox /> : <CheckBoxOutlineBlankOutlined />}
-            </IconButton>
-            <ListItemText
-              primary={todo.itemName}
-              style={
-                todo.completed
-                  ? { textDecoration: 'line-through' }
-                  : { textDecoration: 'none' }
-              }
-            />
-            <ListItemSecondaryAction>
+    <>
+      <DialogBox
+        handleRemove={handleRemove}
+        open={open}
+        setOpen={setOpen}
+        selectedTodo={selectedTodo}
+      />
+      <List>
+        {loading && (
+          <h2 style={{ textAlign: 'center', color: '#1976d2' }}>Loading...</h2>
+        )}
+        {todoData && !todoData.length && (
+          <h3 style={{ textAlign: 'center', color: '#1976d2' }}>
+            No Item Available
+          </h3>
+        )}
+        {todoData &&
+          todoData.map((todo) => (
+            <ListItem key={todo._id}>
               <IconButton
-                onClick={() => handleRemove(todo._id)}
                 edge="end"
-                aria-label="delete"
+                aria-label="check"
+                style={{ margin: '0 2px' }}
+                onClick={() => handleCheckBox(todo._id)}
               >
-                <DeleteIcon style={{ color: 'red' }} />
+                {todo.completed ? (
+                  <CheckBox />
+                ) : (
+                  <CheckBoxOutlineBlankOutlined />
+                )}
               </IconButton>
-              <IconButton
-                onClick={() => handleEdit(todo._id)}
-                edge="end"
-                aria-label="update"
-                style={{ margin: '0 15px' }}
-              >
-                <UpdateIcon style={{ color: '#1976d2' }} />
-              </IconButton>
-            </ListItemSecondaryAction>
-          </ListItem>
-        ))}
-    </List>
+              <ListItemText
+                primary={todo.itemName}
+                style={
+                  todo.completed
+                    ? { textDecoration: 'line-through' }
+                    : { textDecoration: 'none' }
+                }
+              />
+              <ListItemSecondaryAction>
+                <IconButton
+                  onClick={() => handleDeleteConfirmation(todo)}
+                  edge="end"
+                  aria-label="delete"
+                >
+                  <DeleteIcon style={{ color: 'red' }} />
+                </IconButton>
+                <IconButton
+                  onClick={() => handleEdit(todo._id)}
+                  edge="end"
+                  aria-label="update"
+                  style={{ margin: '0 15px' }}
+                >
+                  <UpdateIcon style={{ color: '#1976d2' }} />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+          ))}
+      </List>
+    </>
   );
 }
 
 TodoList.propTypes = {
   handleEdit: PropTypes.func.isRequired,
   handleCheckBox: PropTypes.func.isRequired,
-  handleRemove: PropTypes.func.isRequired,
 };
 
 export default TodoList;
