@@ -13,8 +13,12 @@ API EndPoint :- [https://lowes-todo-app.vercel.app/](https://lowes-todo-app.verc
 **6. Deployment for client-side ``Netlify`` and for server-side ``Vercel``**
 
 
-### Screenshot
+### Todo UI
 ![image description](/public/images/output-screen.png)
+
+### API Documentation UI
+![image description](/public/images/api-doc.png)
+
 
 ### Running App Locally
 Git clone ``https://github.com/vaishnavan/lowes-todo-app.git``
